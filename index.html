@@ -1,0 +1,185 @@
+<title>Pravin Data Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Tamil:wght@500&display=swap">
+<style>
+/* Layout: one narrow column, like a field notebook. Big name up top, then About, Skills, Projects, Method, Contact.
+   Accent is Chennai auto-rickshaw yellow, used only for status marks and the hero underline. */
+:root {
+  --bg: #F2F4F6;
+  --surface: #FFFFFF;
+  --fg: #101820;
+  --muted: #55606B;
+  --line: #D5DBE1;
+  --accent: #F2B705;
+  --accent-ink: #101820;
+  --link: #1F4E8C;
+  --good: #1D7A4D;
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --font-tamil: "Noto Sans Tamil", "Latha", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E141B; --surface: #151D26; --fg: #E8EDF2; --muted: #93A0AD;
+    --line: #26313D; --link: #7FB0F0; --good: #5CCB8F; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E141B; --surface: #151D26; --fg: #E8EDF2; --muted: #93A0AD;
+  --line: #26313D; --link: #7FB0F0; --good: #5CCB8F; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-block: 40px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+main { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+p { margin: 0; max-width: 65ch; }
+a { color: var(--link); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* hero */
+.hero { display: flex; flex-direction: column; gap: 16px; }
+.greet { font-family: var(--font-tamil); font-size: 20px; color: var(--muted); }
+.hero h1 { font-size: clamp(44px, 11vw, 88px); font-weight: 700; letter-spacing: -.02em; }
+.hero h1 span { background: linear-gradient(transparent 68%, var(--accent) 68% 92%, transparent 92%); }
+.hero p.lead { font-size: 19px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+section { display: flex; flex-direction: column; gap: 20px; }
+h2 { font-size: clamp(26px, 5vw, 34px); font-weight: 700; letter-spacing: -.01em; }
+
+/* skills */
+.skills { border-top: 1px solid var(--line); }
+.skill { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.skill b { font-family: var(--font-display); font-size: 18px; font-weight: 500; }
+.skill small { grid-column: 1; color: var(--muted); font-size: 14px; }
+.pill { font-family: var(--font-mono); font-size: 12px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; white-space: nowrap; background: var(--surface); }
+.pill.live { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 500; }
+
+/* projects */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.card h3 { font-size: 22px; font-weight: 700; }
+.card dl { margin: 0; display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 8px 12px; font-size: 14px; }
+.card dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.card dd { margin: 0; overflow-wrap: anywhere; }
+.card .links { margin-top: auto; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+/* method */
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; counter-reset: s; }
+ol.steps li { counter-increment: s; border-top: 3px solid var(--fg); padding-top: 10px; min-width: 0; }
+ol.steps li::before { content: "Step " counter(s); display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+ol.steps b { font-family: var(--font-display); font-size: 18px; font-weight: 500; display: block; }
+ol.steps span { font-size: 14px; color: var(--muted); }
+
+/* contact */
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.contact div { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 14px 16px; min-width: 0; }
+.contact code { display: block; font-family: var(--font-mono); font-size: 14px; overflow-wrap: anywhere; margin-top: 4px; }
+footer { font-family: var(--font-mono); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<main>
+  <header class="hero">
+    <div class="greet">வணக்கம், நான் பிரவின்</div>
+    <h1><span>Pravin</span></h1>
+    <p class="lead">First-year B.Sc Computer Science with AI student in Chennai. I turn raw datasets into clear answers, starting with the things I already care about: Tamil cinema, cricket and the city I live in.</p>
+    <div class="meta">
+      <span>Chennai, India</span>
+      <span>Muthu Kumar Arts and Science College</span>
+      <span>Data analysis</span>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="label">About</div>
+    <h2>Learning data analysis by building real projects</h2>
+    <p>I am studying CS with AI at a University of Madras affiliated college. Alongside classes I am learning Python and data analysis, and I want every skill on this page to be backed by a project you can open and check.</p>
+    <p>Longer term I want to build games and start my own company, and data skills help with both: understanding players, markets and what actually works.</p>
+  </section>
+
+  <section id="skills">
+    <div class="label">Toolkit</div>
+    <h2>What I work with</h2>
+    <div class="skills">
+      <div class="skill"><b>Python</b><span class="pill live">Using now</span><small>Pandas for cleaning, Matplotlib and Seaborn for charts</small></div>
+      <div class="skill"><b>Jupyter Notebook</b><span class="pill live">Using now</span><small>Analysis and write-up in one place</small></div>
+      <div class="skill"><b>Excel</b><span class="pill">Next</span><small>Quick checks, pivot tables, simple formulas</small></div>
+      <div class="skill"><b>SQL</b><span class="pill">Next</span><small>SELECT, JOIN, GROUP BY on real tables</small></div>
+      <div class="skill"><b>Power BI</b><span class="pill">Next</span><small>Dashboards from the finished projects</small></div>
+      <div class="skill"><b>GitHub</b><span class="pill">Next</span><small>Every project published with a README</small></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="label">Projects</div>
+    <h2>Three analyses in progress</h2>
+    <div class="grid">
+      <article class="card">
+        <span class="pill live" style="align-self:flex-start">In progress</span>
+        <h3>Tamil Movies Box Office</h3>
+        <dl>
+          <dt>Question</dt><dd>Does a higher rating mean a higher collection, and which release months do best?</dd>
+          <dt>Data</dt><dd>Public movie datasets (Kaggle)</dd>
+          <dt>Tools</dt><dd>Python, Pandas, Seaborn</dd>
+        </dl>
+        <div class="links">Notebook link: coming soon</div>
+      </article>
+      <article class="card">
+        <span class="pill" style="align-self:flex-start">Planned</span>
+        <h3>IPL Team Performance</h3>
+        <dl>
+          <dt>Question</dt><dd>Does winning the toss matter, and how do home and away records differ?</dd>
+          <dt>Data</dt><dd>Public IPL match data (Kaggle)</dd>
+          <dt>Tools</dt><dd>Python, SQL</dd>
+        </dl>
+        <div class="links">Notebook link: coming soon</div>
+      </article>
+      <article class="card">
+        <span class="pill" style="align-self:flex-start">Planned</span>
+        <h3>Chennai Air Quality</h3>
+        <dl>
+          <dt>Question</dt><dd>Which months and areas have the worst air, and how does it change over the years?</dd>
+          <dt>Data</dt><dd>Public air quality records</dd>
+          <dt>Tools</dt><dd>Python, Power BI</dd>
+        </dl>
+        <div class="links">Notebook link: coming soon</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="label">Method</div>
+    <h2>How every project is built</h2>
+    <ol class="steps">
+      <li><b>Problem</b><span>One clear question</span></li>
+      <li><b>Data</b><span>Where it came from</span></li>
+      <li><b>Cleaning</b><span>Every fix written down</span></li>
+      <li><b>Charts</b><span>Only ones that answer the question</span></li>
+      <li><b>Conclusion</b><span>What the data does and does not show</span></li>
+    </ol>
+  </section>
+
+  <section id="contact">
+    <div class="label">Contact</div>
+    <h2>Say hello</h2>
+    <div class="contact">
+      <!-- Replace the GitHub placeholder below with your own username before sharing. -->
+      <div><span class="label">Email</span><code>spravinraj78@gmail.com</code></div>
+      <div><span class="label">GitHub</span><code>github.com/your-username</code></div>
+      <div><span class="label">LinkedIn</span><code><a href="https://www.linkedin.com/in/pravin-raj-s-846086433">linkedin.com/in/pravin-raj-s-846086433</a></code></div>
+    </div>
+  </section>
+
+  <footer>Pravin · Chennai · Portfolio updated October 2026</footer>
+</main>
